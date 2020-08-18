@@ -4,15 +4,15 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:email.properties"></property>
+        <property name="location" value="classpath:email.properties"/>
     </bean>
 
     <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-        <property name="protocol" value="${email.protocol}"></property>
-        <property name="host" value="${email.host}"></property>
-        <property name="port" value="${email.port}"></property>
-        <property name="username" value="${email.username}"></property>
-        <property name="password" value="${email.password}"></property>
+        <property name="protocol" value="${email.protocol}"/>
+        <property name="host" value="${email.host}"/>
+        <property name="port" value="${email.port}"/>
+        <property name="username" value="${email.username}"/>
+        <property name="password" value="${email.password}"/>
         <property name="javaMailProperties">
             <props>
                 <prop key="mail.${email.protocol}.auth">${email.auth}</prop>
@@ -21,7 +21,7 @@
     </bean>
 
     <bean id="accountEmailService" class="com.ren.email.AccountEmailServiceImpl">
-        <property name="javaMailSender" ref="javaMailSender"></property>
-        <property name="systemEmail" value="${email.systemEmail}"></property>
+        <property name="javaMailSender" ref="javaMailSender"/>
+        <property name="systemEmail" value="${email.systemEmail}"/>
     </bean>
 </beans>

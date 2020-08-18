@@ -1,7 +1,6 @@
 package com.email;
 
 import com.icegreen.greenmail.util.GreenMail;
-import com.icegreen.greenmail.util.GreenMailUtil;
 import com.icegreen.greenmail.util.ServerSetup;
 import com.ren.email.AccountEmailService;
 import org.junit.After;
@@ -9,10 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import javax.mail.Message;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * @author qiang.ren
@@ -47,6 +42,6 @@ public class AccountEmailServiceTest {
 
     @After
     public void stopMailServer() throws Exception{
-
+        greenMail.stop();
     }
 }
