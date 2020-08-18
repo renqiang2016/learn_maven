@@ -20,7 +20,7 @@ public class AccountEmailServiceTest {
     @Before
     public void startMailServer() throws Exception {
         greenMail = new GreenMail(ServerSetup.SMTP);
-        greenMail.setUser("22talentren@sina.com", "393088864Ren");
+        greenMail.setUser("test@sina.com", "123456");
         greenMail.start();
     }
 
@@ -30,7 +30,7 @@ public class AccountEmailServiceTest {
         AccountEmailService accountEmailService = (AccountEmailService) ctx.getBean("accountEmailService");
         String subject = "Test Subject";
         String htmlText = "<h3>Test</h3>";
-        accountEmailService.sendEmail("22talentren@sina.com", subject, htmlText);
+        accountEmailService.sendEmail("renqiang_2015@163.com", subject, htmlText);
 
 //        greenMail.waitForIncomingEmail(2000, 1);
 //        Message[] msgs = greenMail.getReceivedMessages();
