@@ -19,7 +19,7 @@ public class RandomGeneratorTest {
         Set<String> randoms = new HashSet<>();
         for (int i = 0; i < 100; i++) {
             String random = RandomGenerator.getRandomString();
-            System.out.println(random);
+//            System.out.println(random);
             assertFalse(randoms.contains(random));
             randoms.add(random);
         }
