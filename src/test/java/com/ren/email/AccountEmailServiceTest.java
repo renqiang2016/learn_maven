@@ -26,7 +26,7 @@ public class AccountEmailServiceTest {
 
     @Test
     public void testSendMail() throws Exception {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("email_conf.xml");
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("account_email.xml");
         AccountEmailService accountEmailService = (AccountEmailService) ctx.getBean("accountEmailService");
         String subject = "Test Subject";
         String htmlText = "<h3>Test</h3>";
