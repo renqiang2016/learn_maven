@@ -17,6 +17,6 @@ public class AccountEmailServiceTest {
         AccountEmailService accountEmailService = (AccountEmailService) ctx.getBean("accountEmailService");
         String subject = "Test Subject";
         String htmlText = "<h3>Test</h3>";
-        accountEmailService.sendEmail("renqiang_2015@163.com", subject, htmlText);
+        //accountEmailService.sendEmail("renqiang_2015@163.com", subject, htmlText);
     }
 }
