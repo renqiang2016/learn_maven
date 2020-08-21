@@ -6,7 +6,7 @@
 
     <groupId>com.ren</groupId>
     <artifactId>learn_maven</artifactId>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
 
     <!--推送到nexus仓库-->
     <distributionManagement>
@@ -158,5 +158,31 @@
             </plugin>
         </plugins>-->
     </build>
+    <profiles>
+        <!--通过例如：mvn clean install -Pdev（或者-Ptest）的方式实现自动为变量赋值，达到灵活构建的目的-->
+        <profile>
+            <id>dev</id>
+            <properties>
+                <db.driver>com.mysql.jdbc.Driver</db.driver>
+                <db.url>xxxxxx</db.url>
+                <db.username>yyyyyy</db.username>
+                <db.password>zzzzzz</db.password>
+                <other>haha</other>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <db.driver>com.mysql.jdbc.Driver</db.driver>
+                <db.url>aaaaaa</db.url>
+                <db.username>bbbbbb</db.username>
+                <db.password>cccccc</db.password>
+                <other>hehe</other>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>
