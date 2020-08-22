@@ -8,6 +8,44 @@
     <artifactId>learn_maven</artifactId>
     <version>1.1-SNAPSHOT</version>
 
+    <!--用于site构建项目站点-->
+    <name>学习maven</name>
+    <url>xxx</url>
+    <description>用于学习maven</description>
+    <!--配置项目发布信息-->
+    <scm>
+        <connection>scm:git:https://github.com/renqiang2016/learn_maven.git</connection>
+        <developerConnection>scm:git:https://github.com/renqiang2016/learn_maven.git</developerConnection>
+        <!--master分支的浏览器地址，这里需要点击分支master-->
+        <url>https://github.com/renqiang2016/learn_maven/tree/master</url>
+        <tag>HEAD</tag>
+    </scm>
+    <!--持续集成-->
+    <ciManagement>
+        <system>jenkins</system>
+        <url>http://localhost:8080/</url>
+    </ciManagement>
+    <!--项目成员-->
+    <developers>
+        <developer>
+            <id>rq</id>
+            <name>renqiang</name>
+            <email>renqiang_2015@163.com</email>
+            <timezone>8</timezone>
+        </developer>
+    </developers>
+    <!--问题追踪-->
+    <issueManagement>
+        <system>JIRA</system>
+        <url>xxx</url>
+    </issueManagement>
+    <licenses>
+        <license>
+            <name>Apache License, Version2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+
     <!--推送到nexus仓库-->
     <distributionManagement>
         <repository>
@@ -23,6 +61,8 @@
     </distributionManagement>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <springframework.version>4.3.10.RELEASE</springframework.version>
         <kaptcha.version>2.3.2</kaptcha.version>
     </properties>
@@ -91,6 +131,7 @@
 
     <build>
         <plugins>
+            <!--设置可行性程序的入口-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -111,6 +152,16 @@
                     </execution>
                 </executions>
             </plugin>
+            <!--项目站点-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <configuration>
+                    <!--配置站点语言-->
+                    <locales>zh_CN</locales>
+                </configuration>
+            </plugin>
+            <!--设置编译依赖的java版本-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -120,6 +171,7 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <!--测试覆盖率-->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>cobertura-maven-plugin</artifactId>
@@ -131,6 +183,12 @@
                         <format>xml</format>
                     </formats>
                 </configuration>
+            </plugin>
+            <!--配合mvn site使用，用于生成站点信息-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.9</version>
             </plugin>
         </plugins>
         <!--<plugins>
@@ -184,5 +242,39 @@
             </properties>
         </profile>
     </profiles>
+
+    <!--项目报表，可在项目站点查看-->
+    <reporting>
+        <plugins>
+            <!--javadoc文档-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+                <reportSets>
+                    <reportSet>
+                        <id>html</id>
+                        <configuration>
+                            <doctitle>My API for ${project.name} ${project.version}</doctitle>
+                            <windowtitle>My API for ${project.name} ${project.version}</windowtitle>
+                        </configuration>
+                        <reports>
+                            <report>javadoc</report>
+                        </reports>
+                    </reportSet>
+                    <reportSet>
+                        <id>test-html</id>
+                        <configuration>
+                            <testDoctitle>My Test API for ${project.name} ${project.version}</testDoctitle>
+                            <testWindowtitle>My Test API for ${project.name} ${project.version}</testWindowtitle>
+                        </configuration>
+                        <reports>
+                            <report>test-javadoc</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting>
 
 </project>

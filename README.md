@@ -23,3 +23,9 @@ Path：D:\Program Files (x86)\Jenkins
 密码：admin
 工作目录：D:\Program Files (x86)\Jenkins
 ```
+
+## 访问项目站点
+```text
+执行site，生成项目站点
+打开terget下面的index.html访问
+```
